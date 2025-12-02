@@ -1,0 +1,9 @@
+route:
+  receiver: 'default'
+
+receivers:
+  - name: 'default'
+    telegram_configs:
+      - bot_token: '8369871629:AAFLyD2hjLgr3qekJW54EzoKjImyiIbOWP4'
+        chat_id: 674628365
+        message: 'Alert fired'

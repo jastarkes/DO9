@@ -1,0 +1,26 @@
+groups:
+- name: alerts
+  rules:
+  - alert: LowMemory
+    expr: (node_memory_MemAvailable_bytes / 1024 / 1024) < 100
+    labels:
+      severity: critical
+    annotations:
+      summary: "Low memory"
+      description: "Memory less than 100MB"
+
+  - alert: HighRAM
+    expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / 1024 / 1024 / 1024 > 1
+    labels:
+      severity: warning
+    annotations:
+      summary: "High RAM usage"
+      description: "RAM usage over 1GB"
+
+  - alert: HighCPU
+    expr: sum(rate(container_cpu_usage_seconds_total[5m])) * 100 > 10
+    labels:
+      severity: warning
+    annotations:
+      summary: "High CPU usage"
+      description: "CPU usage over 10%"
